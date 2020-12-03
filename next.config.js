@@ -1,4 +1,7 @@
 
 module.exports = {
-  target: 'serverless'
+  target: 'serverless',
+  env: {
+    TEST_RELEASE: process.env.TEST_RELEASE
+  }
 }
