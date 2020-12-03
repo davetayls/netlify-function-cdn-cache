@@ -16,7 +16,7 @@ export default function Test({ control, release }) {
 
 export const getStaticPaths = () => ({
   paths: [],
-  fallback: true
+  fallback: false
 })
 
 export const getStaticProps = ({ params }) => {
