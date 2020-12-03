@@ -20,6 +20,16 @@ exports.handler = async (event, context, callback) => {
     headers: {
       'Cache-Control': control
     },
-    body: `<html><title>test</title><body><h1>${control}</h1><p>Release ${process.env.TEST_RELEASE || 0}</p></body></html>`
+    body: `<html>
+<title>test</title>
+<body>
+<h1>${control}</h1>
+<p>Release ${process.env.TEST_RELEASE || 0}</p>
+<ul>
+<li><a href="./a">a</a></li>
+<li><a href="./b">b</a></li>
+<li><a href="./c">c</a></li>
+</ul>
+</body></html>`
   }
 };
