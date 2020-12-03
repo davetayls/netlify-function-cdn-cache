@@ -8,7 +8,7 @@ function etag(str) {
     hash = ((hash<<5)-hash)+char;
     hash = hash & hash; // Convert to 32bit integer
   }
-  return hash;
+  return 'e-' + hash.toString();
 }
 
 exports.handler = async (event, context, callback) => {
