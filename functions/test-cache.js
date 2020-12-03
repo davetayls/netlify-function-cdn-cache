@@ -12,7 +12,7 @@ exports.handler = async (event, context, callback) => {
     'public',
     max ? `max-age=${max}` : null,
     smax ? `s-maxage=${smax}` : null,
-    'must-revalidate'
+    'stale-while-revalidate=30'
   ].filter(Boolean).join(', ')
 
   return {
