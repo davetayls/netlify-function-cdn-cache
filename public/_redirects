@@ -1,2 +1,3 @@
 
 /test/* /.netlify/functions/test-cache 200
+/fallback/* /.netlify/functions/fallback 200
