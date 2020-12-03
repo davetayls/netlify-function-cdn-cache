@@ -1,3 +1,16 @@
+function etag(str) {
+  var hash = 0;
+  if (str.length == 0) {
+    return hash;
+  }
+  for (var i = 0; i < str.length; i++) {
+    var char = str.charCodeAt(i);
+    hash = ((hash<<5)-hash)+char;
+    hash = hash & hash; // Convert to 32bit integer
+  }
+  return hash;
+}
+
 exports.handler = async (event, context, callback) => {
   // Get the request URL
   const { path } = event;
@@ -15,12 +28,7 @@ exports.handler = async (event, context, callback) => {
     'stale-while-revalidate=30'
   ].filter(Boolean).join(', ')
 
-  return {
-    statusCode: 200,
-    headers: {
-      'Cache-Control': control
-    },
-    body: `<html>
+  const body = `<html>
 <title>test</title>
 <body>
 <h1>${control}</h1>
@@ -31,5 +39,14 @@ exports.handler = async (event, context, callback) => {
 <li><a href="./c">c</a></li>
 </ul>
 </body></html>`
+
+  return {
+    statusCode: 200,
+    headers: {
+      'cache-control': control,
+      'content-type': 'text/html; charset=utf-8',
+      etag: etag(body)
+    },
+    body
   }
 };
