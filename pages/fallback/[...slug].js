@@ -14,18 +14,18 @@ export default function Test({ control, release }) {
   )
 }
 
-// export const getStaticPaths = () => ({
-//   paths: [],
-//   fallback: false
-// })
+export const getStaticPaths = () => ({
+  paths: [],
+  fallback: false
+})
 
-export function getServerSideProps({ resolvedUrl }) {
-  // const path = params.slug
-  //   ? '/test/' + params.slug.join('/')
-  //   : ''
+export const getStaticProps = ({ params }) => {
+  const path = params.slug
+    ? '/test/' + params.slug.join('/')
+    : ''
   return {
     props: {
-      control: getControl(resolvedUrl) || '',
+      control: getControl(path) || '',
       release: process.env.TEST_RELEASE || 0
     }
   }
