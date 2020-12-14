@@ -25,7 +25,7 @@ exports.handler = async (event, context, callback) => {
     'public',
     max ? `max-age=${max}` : null,
     smax ? `s-maxage=${smax}` : null,
-    'stale-while-revalidate=30'
+    'must-revalidate'
   ].filter(Boolean).join(', ')
 
   const body = `<html>
